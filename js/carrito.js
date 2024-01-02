@@ -8,13 +8,8 @@ createApp({
     },
     mounted() {
         // Obtén el contenido del Local Storage y asigna a la propiedad 'productos'
-        const productosEnLocalStorage = JSON.parse(localStorage.getItem('carrito')) || [];
-        this.carrito = productosEnLocalStorage;
+        const carritoFromLocalStorage = JSON.parse(localStorage.getItem('carrito'));
+        this.carrito = carritoFromLocalStorage;
+        console.log(carritoFromLocalStorage)
     },
-
-
-    created() {
-        this.fetchData(this.url)
-
-    }
 }, ).mount('#carrito')
