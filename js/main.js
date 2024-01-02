@@ -5,6 +5,7 @@ createApp({
         return {
             productos: [],
             carrito:[],
+            prods: [],
             url: "http://127.0.0.1:5000/productos"
         }
     },
@@ -59,7 +60,9 @@ createApp({
                 
                 // Guarda el carrito y la lista completa de productos en el almacenamiento local
                 localStorage.setItem('carrito', JSON.stringify(this.carrito));
-                producto.cantidad--;            
+                localStorage.setItem('prods', JSON.stringify(this.prods));
+                producto.cantidad--;
+                console.log("Contenido del Local Storage - carrito:", localStorage.getItem('carrito'));            
                 // Aquí puedes realizar alguna acción adicional después de restar en 1,
                 // como guardar el cambio en el backend mediante una llamada a la API.
                 // Puedes agregar la lógica aquí según tus necesidades.
@@ -87,7 +90,7 @@ createApp({
             producto.cantidad--;
         
             // Actualiza la instancia de Vue para ver el cambio en el carrito
-            this.$forceUpdate();
+            this.$forceUpdate(); 
         
             console.log(`Producto ${producto.descripcion} agregado al carrito.`);
         
@@ -104,4 +107,4 @@ createApp({
 
     }
     },
-}).mount('#app')
+).mount('#app')
