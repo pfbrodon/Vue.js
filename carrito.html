@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <template id="app">
+        <div>
+            <h2>Carrito</h2>
+            <ul>
+                <li v-for="(producto, index) in carrito" :key="index">
+                    {{ producto.descripcion }} - Cantidad: {{ producto.cantidad }}
+                </li>
+            </ul>
+        </div>
+    </template>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

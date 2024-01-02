@@ -4,6 +4,7 @@ createApp({
     data() {
         return {
             productos: [],
+            carrito:[],
             url: "http://127.0.0.1:5000/productos"
         }
     },
@@ -29,31 +30,78 @@ createApp({
         restarEnUno(id) {
             const producto = this.productos.find(item => item.id === id);
             if (producto && producto.cantidad > 0) {
-                producto.cantidad -= 1;
+                producto.cantidad--;
                 // Aquí puedes realizar alguna acción adicional después de restar en 1,
                 // como guardar el cambio en el backend mediante una llamada a la API.
                 // Puedes agregar la lógica aquí según tus necesidades.
                 // Por ejemplo:
-                this.actualizarCantidadEnBackend(id, producto.cantidad);
+                //this.actualizarCantidadEnBackend(id, producto.cantidad);
             } else {
                 alert('La cantidad no puede ser menor que 0.');
             }
         },
         sumarEnUno(id) {
             const producto = this.productos.find(item => item.id === id);
-            if (producto && producto.cantidad > 0) {
-                producto.cantidad += 1;
+            const productoEnCarrito = this.carrito.find(p => p.id === id);
+            if (producto.cantidad > 0) {
+                console.log(producto);
+                console.log(productoEnCarrito)
+                if (productoEnCarrito) {
+                    // Si ya está en el carrito, aumenta la cantidad
+                    productoEnCarrito.cantidad++;
+                } else {
+                    // Si no está, agregalo con cantidad 1
+                    const nuevoProductoEnCarrito = { ...producto, cantidad: 1 };
+                    this.carrito.push(nuevoProductoEnCarrito);
+                }
+                console.log(this.carrito);
+                console.log(`Producto ${producto.descripcion} agregado al carrito.`);
+                
+                // Guarda el carrito y la lista completa de productos en el almacenamiento local
+                localStorage.setItem('carrito', JSON.stringify(this.carrito));
+                producto.cantidad--;            
                 // Aquí puedes realizar alguna acción adicional después de restar en 1,
                 // como guardar el cambio en el backend mediante una llamada a la API.
                 // Puedes agregar la lógica aquí según tus necesidades.
                 // Por ejemplo:
-                this.actualizarCantidadEnBackend(id, producto.cantidad);
+                //this.actualizarCantidadEnBackend(id, producto.cantidad);
             } else {
                 alert('La cantidad no puede ser menor que 0.');
             }
         },
+        //////////////////////////////////////////////////
+        agregarProducto(producto) {
+            // Buscar el producto en el carrito
+            const productoEnCarrito = this.carrito.find(p => p.id === producto.id);
+        
+            if (productoEnCarrito) {
+                // Si ya está en el carrito, aumenta la cantidad
+                productoEnCarrito.cantidad++;
+            } else {
+                // Si no está, agregalo con cantidad 1
+                const nuevoProductoEnCarrito = { ...producto, cantidad: 1 };
+                this.carrito.push(nuevoProductoEnCarrito);
+            }
+        
+            // Resta el stock del producto
+            producto.cantidad--;
+        
+            // Actualiza la instancia de Vue para ver el cambio en el carrito
+            this.$forceUpdate();
+        
+            console.log(`Producto ${producto.descripcion} agregado al carrito.`);
+        
+            // Guarda el carrito y la lista completa de productos en el almacenamiento local
+            localStorage.setItem('carrito', JSON.stringify(this.carrito));
+            localStorage.setItem('prods', JSON.stringify(this.prods));
+        
+            this.productoAgregado = true;
+        },
+        //////////////////////////////////////////////////
     },
     created() {
         this.fetchData(this.url)
+
+    }
     },
 }).mount('#app')

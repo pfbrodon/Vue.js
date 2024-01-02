@@ -12,6 +12,7 @@
     <div id="app">
         <div class="container">
             <div class="table-responsive">
+                <a href="/carrito.html">Carrito</a>
                 <br>
                 <table class="table table-bordered">
                     <thead>
@@ -35,7 +36,7 @@
                             <td>{{producto.precioVPublico}}</td>
                             <td>
                                 <div class="container">
-                                    <button v-on:click="restarEnUno(producto.id)">+</button><button v-on:click="sumarEnUno(producto.id)">-</button>
+                                    <button v-on:click="restarEnUno(producto.id)">-</button><button v-on:click="sumarEnUno(producto.id)">+</button>
                                 </div>
                             </td>
                         </tr>
