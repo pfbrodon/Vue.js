@@ -11,9 +11,38 @@
 <body>
     <div id="app">
         <div class="container">
+            <br>
+            <button onclick="window.location.href = 'carrito.html';">Ver Carrito</button>
+            <br><br>
             <div class="table-responsive">
-                <a href="/carrito.html">Carrito</a>
-                <br>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Cantidad</th>
+                            <th>Descripcion</th>
+                            <th>Precio Unit.</th>
+                            <th>Sub Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="" v-for="item in carrito">
+                            <td scope="row">{{item.codigo}}</td>
+                            <td>{{item.cantidad}}</td>
+                            <td>{{item.descripcion}}</td>
+                            <td>{{item.precioUnit}}</td>
+                            <td></td>
+                            <td>
+                                <div>
+                                    <button>-</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -36,7 +65,7 @@
                             <td>{{producto.precioVPublico}}</td>
                             <td>
                                 <div class="container">
-                                    <button v-on:click="restarEnUno(producto.id)">-</button><button v-on:click="sumarEnUno(producto.id)">+</button>
+                                    <button v-on:click="sumarEnUno(producto.id)">+</button>
                                 </div>
                             </td>
                         </tr>
