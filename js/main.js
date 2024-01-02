@@ -26,6 +26,32 @@ createApp({
             localStorage.setItem('carrito', JSON.stringify(carrito));
             alert('Producto agregado al carrito');
         },
+        restarEnUno(id) {
+            const producto = this.productos.find(item => item.id === id);
+            if (producto && producto.cantidad > 0) {
+                producto.cantidad -= 1;
+                // Aquí puedes realizar alguna acción adicional después de restar en 1,
+                // como guardar el cambio en el backend mediante una llamada a la API.
+                // Puedes agregar la lógica aquí según tus necesidades.
+                // Por ejemplo:
+                this.actualizarCantidadEnBackend(id, producto.cantidad);
+            } else {
+                alert('La cantidad no puede ser menor que 0.');
+            }
+        },
+        sumarEnUno(id) {
+            const producto = this.productos.find(item => item.id === id);
+            if (producto && producto.cantidad > 0) {
+                producto.cantidad += 1;
+                // Aquí puedes realizar alguna acción adicional después de restar en 1,
+                // como guardar el cambio en el backend mediante una llamada a la API.
+                // Puedes agregar la lógica aquí según tus necesidades.
+                // Por ejemplo:
+                this.actualizarCantidadEnBackend(id, producto.cantidad);
+            } else {
+                alert('La cantidad no puede ser menor que 0.');
+            }
+        },
     },
     created() {
         this.fetchData(this.url)

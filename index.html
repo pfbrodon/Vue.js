@@ -35,7 +35,7 @@
                             <td>{{producto.precioVPublico}}</td>
                             <td>
                                 <div class="container">
-                                    <button @click="agregarAlCarrito(producto)">+</button><button>-</button>
+                                    <button v-on:click="restarEnUno(producto.id)">+</button><button v-on:click="sumarEnUno(producto.id)">-</button>
                                 </div>
                             </td>
                         </tr>
