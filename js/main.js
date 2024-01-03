@@ -6,6 +6,7 @@ createApp({
             productos: [],
             carrito: [],
             prods: [],
+            cantidadProductosAgregados: 0,
             url: "http://127.0.0.1:5000/productos"
         }
     },
@@ -18,15 +19,6 @@ createApp({
                     this.productos = data;
                 })
                 .catch(error => alert("Ups...se produjo un error:"))
-        },
-        agregarAlCarrito(producto) {
-            // Obtener el carrito del localStorage (o crear uno si no existe)
-            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            // Agregar el producto al carrito
-            carrito.push(producto);
-            // Guardar el carrito actualizado en el localStorage
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-            alert('Producto agregado al carrito');
         },
         restarEnUno(id) {
             const producto = this.productos.find(item => item.id === id);
@@ -57,11 +49,13 @@ createApp({
                 }
                 console.log(this.carrito);
                 console.log(`Producto ${producto.descripcion} agregado al carrito.`);
-
                 // Guarda el carrito y la lista completa de productos en el almacenamiento local
                 localStorage.setItem('carrito', JSON.stringify(this.carrito));
                 localStorage.setItem('prods', JSON.stringify(this.prods));
                 producto.cantidad--;
+                // Actualiza la cantidad de productos agregados
+                this.cantidadProductosAgregados = this.carrito.reduce((total, p) => total + p.cantidad, 0);
+                /////////////////////////
                 console.log("Contenido del Local Storage - carrito:", localStorage.getItem('carrito'));
                 this.mostrarLocalStorage();
                 // Aquí puedes realizar alguna acción adicional después de restar en 1,
@@ -74,43 +68,15 @@ createApp({
             }
         },
         //////////////////////////////////////////////////
-        agregarProducto(producto) {
-            // Buscar el producto en el carrito
-            const productoEnCarrito = this.carrito.find(p => p.id === producto.id);
 
-            if (productoEnCarrito) {
-                // Si ya está en el carrito, aumenta la cantidad
-                productoEnCarrito.cantidad++;
-            } else {
-                // Si no está, agregalo con cantidad 1
-                const nuevoProductoEnCarrito = {...producto, cantidad: 1 };
-                this.carrito.push(nuevoProductoEnCarrito);
-            }
-
-            // Resta el stock del producto
-            producto.cantidad--;
-
-            // Actualiza la instancia de Vue para ver el cambio en el carrito
-            this.$forceUpdate();
-
-            console.log(`Producto ${producto.descripcion} agregado al carrito.`);
-
-            // Guarda el carrito y la lista completa de productos en el almacenamiento local
-            localStorage.setItem('carrito', JSON.stringify(this.carrito));
-            localStorage.setItem('prods', JSON.stringify(this.prods));
-
-            this.productoAgregado = true;
-        },
         //////////////////////////////////////////////////
         mostrarLocalStorage() {
             // Obtén y muestra el contenido del Local Storage
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 const value = localStorage.getItem(key);
-
                 console.log(`Key: ${key}, Value: ${value}`);
             }
-
             // Obtén el carrito del Local Storage y muéstralo en la lista
             const carritoFromLocalStorage = JSON.parse(localStorage.getItem('carrito'));
             if (carritoFromLocalStorage) {
@@ -120,6 +86,5 @@ createApp({
     },
     created() {
         this.fetchData(this.url)
-
     }
 }, ).mount('#app')
