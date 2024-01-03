@@ -1,8 +1,28 @@
-.col-3 {
+.col-2 {
     background-color: aquamarine;
+    align-items: center;
+    text-align: center;
+    display: flex;
 }
 
 .col-6 {
     background-color: blanchedalmond;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+    height: 8vh
+}
+.col-preciovp{
+    text-align: right;
+}
+.col-cantidad{
+    text-align: center;
+}
+.col-codigo{
+    text-align: center;
+}
+.col-id{
     text-align: center;
 }

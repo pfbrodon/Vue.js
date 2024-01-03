@@ -12,6 +12,12 @@
     <div id="carrito">
         <div class="container">
             <br>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+                <div class="col-3"><div>Total Carrito:</div></div>
+                <div class="col-3"><div>${{ calcularTotal()}}</div></div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -29,8 +35,8 @@
                             <td scope="row">{{item.codigo}}</td>
                             <td>{{item.cantidad}}</td>
                             <td>{{item.descripcion}}</td>
-                            <td>{{item.precioUnit}}</td>
-                            <td></td>
+                            <td>${{item.precioUnit}}</td>
+                            <td>${{calcularSubtotal(item)}}</td>
                             <td>
                                 <div>
                                     <button>-</button>
@@ -38,6 +44,12 @@
                             </td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Total:</td>
+                            <td>${{calcularTotal()}}</td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

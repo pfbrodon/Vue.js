@@ -12,4 +12,14 @@ createApp({
         this.carrito = carritoFromLocalStorage;
         console.log(carritoFromLocalStorage)
     },
+methods: {
+    calcularSubtotal: function (item) {
+        return item.cantidad * item.precioVPublico;
+    },
+    calcularTotal: function () {
+        // Suma los subtotales utilizando reduce
+        return this.carrito.reduce((total, item) => total + this.calcularSubtotal(item), 0);
+    }    
+},
+
 }, ).mount('#carrito')

@@ -14,12 +14,13 @@
         <div class="container">
             <br><br>
             <div class="row">
-                <div class="col-3"> <button onclick="window.location.href = 'carrito.html';">Ver Carrito</button>
+                <div class="col-2"> <button onclick="window.location.href = 'carrito.html';">Ver Carrito</button>
                 </div>
                 <div class="col-6">
-                    <h4>LISTA DE PRODUCTOS</h4>
+                    LISTA DE PRODUCTOS
                 </div>
-                <div class="col-3">Items en Carrito: {{cantidadProductosAgregados}}</div>
+                <div class="col-2">Items en Carrito: {{cantidadProductosAgregados}}</div>
+                <div class="col-2" id="totalCompra"></div>
             </div>
             <div class="row">
                 <div class="table-responsive">
@@ -37,12 +38,12 @@
                         </thead>
                         <tbody>
                             <tr class="" v-for="producto in productos">
-                                <td scope="row">{{producto.id}}</td>
+                                <td class="col-id" scope="row">{{producto.id}}</td>
                                 <td>{{producto.id_categoria}}</td>
-                                <td>{{producto.codigo}}</td>
-                                <td>{{producto.cantidad}}</td>
+                                <td class="col-codigo">{{producto.codigo}}</td>
+                                <td class="col-cantidad">{{producto.cantidad}}</td>
                                 <td>{{producto.descripcion}}</td>
-                                <td>{{producto.precioVPublico}}</td>
+                                <td class="col-preciovp">${{producto.precioVPublico}}</td>
                                 <td>
                                     <div class="container">
                                         <button v-on:click="sumarEnUno(producto.id)">+</button>

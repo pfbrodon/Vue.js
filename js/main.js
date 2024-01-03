@@ -53,6 +53,11 @@ createApp({
                 localStorage.setItem('carrito', JSON.stringify(this.carrito));
                 localStorage.setItem('prods', JSON.stringify(this.prods));
                 producto.cantidad--;
+
+                // Calcula el total de la compra y muestra en algún lugar (por ejemplo, en un div con id="totalCompra")
+                const totalCompra = this.calcularTotalCompra();
+                document.getElementById('totalCompra').innerText = `Total de la compra: $${totalCompra}`;
+
                 // Actualiza la cantidad de productos agregados
                 this.cantidadProductosAgregados = this.carrito.reduce((total, p) => total + p.cantidad, 0);
                 /////////////////////////
@@ -66,6 +71,10 @@ createApp({
             } else {
                 alert('La cantidad no puede ser menor que 0.');
             }
+        },
+        calcularTotalCompra() {
+            // Calcula el total de la compra multiplicando la cantidad de cada ítem por su precio y sumando todo
+            return this.carrito.reduce((total, producto) => total + (producto.cantidad * producto.precioVPublico), 0);
         },
         //////////////////////////////////////////////////
 
