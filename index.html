@@ -43,7 +43,7 @@
                                 <td class="col-codigo">{{producto.codigo}}</td>
                                 <td class="col-cantidad">{{producto.cantidad}}</td>
                                 <td>{{producto.descripcion}}</td>
-                                <td class="col-preciovp">${{producto.precioVPublico}}</td>
+                                <td class="col-preciovp">${{producto.precioVPublico.toFixed(2)}}</td>
                                 <td>
                                     <div class="container">
                                         <button v-on:click="sumarEnUno(producto.id)">+</button>

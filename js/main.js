@@ -56,7 +56,7 @@ createApp({
 
                 // Calcula el total de la compra y muestra en algún lugar (por ejemplo, en un div con id="totalCompra")
                 const totalCompra = this.calcularTotalCompra();
-                document.getElementById('totalCompra').innerText = `Total de la compra: $${totalCompra}`;
+                document.getElementById('totalCompra').innerText = `Total de la compra: $${totalCompra.toFixed(2)}`;
 
                 // Actualiza la cantidad de productos agregados
                 this.cantidadProductosAgregados = this.carrito.reduce((total, p) => total + p.cantidad, 0);

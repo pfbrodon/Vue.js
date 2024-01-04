@@ -6,7 +6,7 @@
 }
 
 .col-6 {
-    background-color: blanchedalmond;
+    background-color: aquamarine;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -14,15 +14,23 @@
     font-weight: bold;
     height: 8vh
 }
-.col-preciovp{
+
+.col-preciovp {
     text-align: right;
 }
-.col-cantidad{
+
+.col-cantidad {
     text-align: center;
 }
-.col-codigo{
+
+.col-codigo {
     text-align: center;
 }
-.col-id{
+
+.col-id {
     text-align: center;
+}
+
+.table-responsive {
+    background-color: aquamarine;
 }

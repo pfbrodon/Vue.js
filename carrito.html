@@ -15,8 +15,12 @@
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-3"></div>
-                <div class="col-3"><div>Total Carrito:</div></div>
-                <div class="col-3"><div>${{ calcularTotal()}}</div></div>
+                <div class="col-3">
+                    <div>Total Carrito:</div>
+                </div>
+                <div class="col-3">
+                    <div>${{calcularTotal().toFixed(2)}}</div>
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -35,8 +39,8 @@
                             <td scope="row">{{item.codigo}}</td>
                             <td>{{item.cantidad}}</td>
                             <td>{{item.descripcion}}</td>
-                            <td>${{item.precioUnit}}</td>
-                            <td>${{calcularSubtotal(item)}}</td>
+                            <td>${{item.precioUnit.toFixed(2)}}</td>
+                            <td>${{calcularSubtotal(item).toFixed(2)}}</td>
                             <td>
                                 <div>
                                     <button>-</button>
@@ -47,7 +51,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="4">Total:</td>
-                            <td>${{calcularTotal()}}</td>
+                            <td>${{calcularTotal().toFixed(2)}}</td>
                         </tr>
                     </tfoot>
                 </table>
