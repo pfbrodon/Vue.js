@@ -20,6 +20,19 @@ createApp({
                 })
                 .catch(error => alert("Ups...se produjo un error:"))
         },
+        restarEnUno(id) {
+            const producto = this.productos.find(item => item.id === id);
+            if (producto && producto.cantidad > 0) {
+                producto.cantidad--;
+                // Aquí puedes realizar alguna acción adicional después de restar en 1,
+                // como guardar el cambio en el backend mediante una llamada a la API.
+                // Puedes agregar la lógica aquí según tus necesidades.
+                // Por ejemplo:
+                //this.actualizarCantidadEnBackend(id, producto.cantidad);
+            } else {
+                alert('La cantidad no puede ser menor que 0.');
+            }
+        },
         sumarEnUno(id) {
             const producto = this.productos.find(item => item.id === id);
             const productoEnCarrito = this.carrito.find(p => p.id === id);
@@ -40,13 +53,21 @@ createApp({
                 localStorage.setItem('carrito', JSON.stringify(this.carrito));
                 localStorage.setItem('prods', JSON.stringify(this.prods));
                 producto.cantidad--;
+
                 // Calcula el total de la compra y muestra en algún lugar (por ejemplo, en un div con id="totalCompra")
                 const totalCompra = this.calcularTotalCompra();
                 document.getElementById('totalCompra').innerText = `Total de la compra: $${totalCompra.toFixed(2)}`;
+
                 // Actualiza la cantidad de productos agregados
                 this.cantidadProductosAgregados = this.carrito.reduce((total, p) => total + p.cantidad, 0);
                 /////////////////////////
                 console.log("Contenido del Local Storage - carrito:", localStorage.getItem('carrito'));
+                //this.mostrarLocalStorage();
+                // Aquí puedes realizar alguna acción adicional después de restar en 1,
+                // como guardar el cambio en el backend mediante una llamada a la API.
+                // Puedes agregar la lógica aquí según tus necesidades.
+                // Por ejemplo:
+                //this.actualizarCantidadEnBackend(id, producto.cantidad);
             } else {
                 alert('La cantidad no puede ser menor que 0.');
             }
@@ -55,35 +76,27 @@ createApp({
             // Calcula el total de la compra multiplicando la cantidad de cada ítem por su precio y sumando todo
             return this.carrito.reduce((total, producto) => total + (producto.cantidad * producto.precioVPublico), 0);
         },
-        cargarCarritoDesdeLocalStorage() {
-            // Cargar el carrito almacenado en el localStorage al iniciar la aplicación
-            const carritoGuardado = localStorage.getItem('carrito');
-            if (carritoGuardado) {
-                this.carrito = JSON.parse(carritoGuardado);
-                // Actualiza la cantidad de productos agregados
-                this.cantidadProductosAgregados = this.carrito.reduce((total, p) => total + p.cantidad, 0);
-                // Actualiza el total de la compra
-                this.actualizarTotalCompra();
-            }
-        },
-        actualizarTotalCompra() {
-            const totalCompra = this.calcularTotalCompra();
-            const totalCompraElement = document.getElementById('totalCompra');
-            if (totalCompraElement) {
-                totalCompraElement.innerText = `Total de la compra: $${totalCompra.toFixed(2)}`;
-            }
-        },
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //mostrarLocalStorage() {
+            // Obtén y muestra el contenido del Local Storage
+        //    for (let i = 0; i < localStorage.length; i++) {
+        //        const key = localStorage.key(i);
+        //        const value = localStorage.getItem(key);
+        //        console.log(`Key: ${key}, Value: ${value}`);
+        //    }
+            // Obtén el carrito del Local Storage y muéstralo en la lista
+        //    const carritoFromLocalStorage = JSON.parse(localStorage.getItem('carrito'));
+        //    if (carritoFromLocalStorage) {
+        //        this.carrito = carritoFromLocalStorage;
+        //    }
+        //},
+
+
 
     },
     created() {
         this.fetchData(this.url)
-        // Llama a la función para cargar el carrito desde el localStorage
-        this.cargarCarritoDesdeLocalStorage();
-        // Llama a la función para actualizar el total de la compra al cargar la página
-        //this.actualizarTotalCompra();
-    },
-    mounted() {
-        // Llama a la función para actualizar el total de la compra después de que la instancia de Vue se haya montado en el DOM
-        this.actualizarTotalCompra();
     }
 }, ).mount('#app')
