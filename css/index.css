@@ -1,18 +1,18 @@
 .col-2 {
-    background-color: grey;
+    background-color:lightgray;
     align-items: center;
     text-align: center;
     display: flex;
 }
 
 .col-6 {
-    background-color: grey;
+    background-color: lightgray;
     text-align: center;
     align-items: center;
     justify-content: center;
     display: flex;
     font-weight: bold;
-    height: 8vh
+    
 }
 
 .col-preciovp {
@@ -32,5 +32,17 @@
 }
 
 .table-responsive {
-    background-color: grey;
+    background-color: lightgray;
+}
+
+.col-acciones {
+    text-align: center;
+}
+
+#totalCompra {
+    background-color:aquamarine;
+    margin: 10px;
+    outline-style:groove;
+    border-radius: 2PX;
+    outline-width: 2px;
 }

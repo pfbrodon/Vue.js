@@ -19,8 +19,15 @@
                 <div class="col-6">
                     LISTA DE PRODUCTOS
                 </div>
-                <div class="col-2">Items en Carrito: {{cantidadProductosAgregados}}</div>
-                <div class="col-2" id="totalCompra"></div>
+                <div class="col-2">
+                    <div id="itemsCarrito">
+                        Items en Carrito:
+                        {{cantidadProductosAgregados}}
+                    </div>
+                </div>
+                <div class="col-2" >
+                    <div id="totalCompra"></div>
+                </div>
             </div>
             <div class="row">
                 <div class="table-responsive">
@@ -44,7 +51,7 @@
                                 <td class="col-cantidad">{{producto.cantidad}}</td>
                                 <td>{{producto.descripcion}}</td>
                                 <td class="col-preciovp">${{producto.precioVPublico.toFixed(2)}}</td>
-                                <td>
+                                <td class="col-acciones">
                                     <div class="container">
                                         <button class="btn btn-primary btn-sm" v-on:click="sumarEnUno(producto.id)">+</button>
                                     </div>
