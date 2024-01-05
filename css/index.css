@@ -1,12 +1,12 @@
 .col-2 {
-    background-color: aquamarine;
+    background-color: grey;
     align-items: center;
     text-align: center;
     display: flex;
 }
 
 .col-6 {
-    background-color: aquamarine;
+    background-color: grey;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -32,5 +32,5 @@
 }
 
 .table-responsive {
-    background-color: aquamarine;
+    background-color: grey;
 }

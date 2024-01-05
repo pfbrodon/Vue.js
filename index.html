@@ -14,7 +14,7 @@
         <div class="container">
             <br><br>
             <div class="row">
-                <div class="col-2"> <button onclick="window.location.href = 'carrito.html';">Ver Carrito</button>
+                <div class="col-2"> <button class="btn btn-success btn-sm" onclick="window.location.href = 'carrito.html';">Ver Carrito</button>
                 </div>
                 <div class="col-6">
                     LISTA DE PRODUCTOS
@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -46,7 +46,7 @@
                                 <td class="col-preciovp">${{producto.precioVPublico.toFixed(2)}}</td>
                                 <td>
                                     <div class="container">
-                                        <button v-on:click="sumarEnUno(producto.id)">+</button>
+                                        <button class="btn btn-primary btn-sm" v-on:click="sumarEnUno(producto.id)">+</button>
                                     </div>
                                 </td>
                             </tr>

@@ -45,6 +45,17 @@ createApp({
                 document.getElementById('totalCompra').innerText = `Total de la compra: $${totalCompra.toFixed(2)}`;
                 // Actualiza la cantidad de productos agregados
                 this.cantidadProductosAgregados = this.carrito.reduce((total, p) => total + p.cantidad, 0);
+                // Luego, realiza una solicitud PUT al backend Flask para restar el producto del carrito
+                fetch(`http://localhost:5000/productos/resta/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json' // Asegúrate de configurar el tipo de medio correctamente
+                        },
+                        body: JSON.stringify({ cantidad: producto.cantidad }) // Asegúrate de enviar un cuerpo JSON válido
+                    })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error('Error:', error));
                 /////////////////////////
                 console.log("Contenido del Local Storage - carrito:", localStorage.getItem('carrito'));
             } else {
@@ -77,7 +88,7 @@ createApp({
     },
     created() {
         this.fetchData(this.url)
-        // Llama a la función para cargar el carrito desde el localStorage
+            // Llama a la función para cargar el carrito desde el localStorage
         this.cargarCarritoDesdeLocalStorage();
         // Llama a la función para actualizar el total de la compra al cargar la página
         //this.actualizarTotalCompra();
